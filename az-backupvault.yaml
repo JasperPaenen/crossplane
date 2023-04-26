@@ -1,0 +1,11 @@
+apiVersion: dataprotection.azure.upbound.io/v1beta1
+kind: BackupVault
+metadata:
+  name: jasperbackupvault
+spec:
+  forProvider:
+    datastoreType: VaultStore
+    location: West Europe
+    redundancy: LocallyRedundant
+    resourceGroupNameRef:
+      name: poc-jasper
