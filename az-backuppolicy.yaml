@@ -5,6 +5,5 @@ metadata:
 spec:
   forProvider:
     retentionDuration: P30D
-    vaultIdSelector:
-      matchLabels:
-        test: test
+    vaultIdRef:
+      name: jasperbackupvault
