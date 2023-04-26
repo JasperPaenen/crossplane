@@ -1,0 +1,10 @@
+apiVersion: dataprotection.azure.upbound.io/v1beta1
+kind: BackupPolicyBlobStorage
+metadata:
+  name: jasperbackuppolicy
+spec:
+  forProvider:
+    retentionDuration: P30D
+    vaultIdSelector:
+      matchLabels:
+        test: test
