@@ -1,0 +1,13 @@
+apiVersion: dataprotection.azure.upbound.io/v1beta1
+kind: BackupInstanceBlobStorage
+metadata:
+  name: backupassignment
+spec:
+  forProvider:
+    backupPolicyIdRef:
+      name: jasperbackuppolicy
+    location: West Europe
+    storageAccountIdRef:
+      name: jasperpaenenstorage
+    vaultIdRef:
+      name: jasperbackupvault
