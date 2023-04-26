@@ -1,0 +1,8 @@
+apiVersion: storage.azure.upbound.io/v1beta1
+kind: Container
+metadata:
+  name: storage
+spec:
+  forProvider:
+    containerAccessType: private
+    storageAccountName: jasperpaenenstorage
