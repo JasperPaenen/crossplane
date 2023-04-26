@@ -1,0 +1,11 @@
+apiVersion: storage.azure.upbound.io/v1beta1
+kind: Account
+metadata:
+  name: jasperpaenenstorage
+spec:
+  forProvider:
+    accountReplicationType: LRS
+    accountTier: Standard
+    location: Europe West
+    resourceGroupNameRef:
+      name: poc-jasper
