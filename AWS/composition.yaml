@@ -1,0 +1,35 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: s3-backup
+spec:
+  compositeTypeRef:
+    apiVersion: custom-api.example.org/v1alpha1
+    kind: XDatabase
+  resources:
+    - name: s3-bucket-jasper
+      base:
+        apiVersion: s3.aws.upbound.io/v1beta1
+        kind: Bucket
+        metadata:
+          generateName: crossplane-bucket-
+        spec:
+          forProvider:
+            region: "eu-west-1"
+    - name: Backup-plan
+      base:
+        apiVersion: backup.aws.upbound.io/v1beta1
+        kind: Plan
+        metadata:
+          labels:
+            poc: backup
+          name: poc-jasper-backup
+        spec:
+          forProvider:
+            name: poc-jasper-eks-velero-backups-demo
+            region: eu-west-1
+            rule:      
+      patches:
+        - fromFieldPath: spec.resourceName
+          toFieldPath: spec.forProvider.rule.ruleName
+

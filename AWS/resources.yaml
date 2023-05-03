@@ -1,0 +1,18 @@
+apiVersion: backup.aws.upbound.io/v1beta1
+kind: Selection
+metadata:
+  labels:
+    testing.upbound.io/example-name: vault
+  name: resource-assignment
+spec:
+  forProvider:
+    name: S3
+    region: eu-west-1
+    iamRoleArn: arn:aws:iam::274382041406:role/service-role/AWSBackupDefaultServiceRole
+    planIdSelector:
+      matchLabels:
+        poc: backup
+    selectionTag:
+      - key: crossplane
+        type: STRINGEQUALS
+        value: bucket
