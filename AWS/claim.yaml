@@ -3,4 +3,4 @@ kind: XDatabase
 metadata:
   name: my-composite-resource
 spec: 
-  region: "EU"
+  bucketname: test-bucket-jasper

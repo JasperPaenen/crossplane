@@ -18,13 +18,9 @@ spec:
           spec:
             type: object
             properties:
-              region:
+              bucketname:
                 type: string
-                oneOf:
-                  - pattern: '^EU$'
-                  - pattern: '^US$'
             required:
-              - region
-  claimNames:
-    kind: Database
-    plural: databases
+              - bucketname
+        required:
+        - parameters
