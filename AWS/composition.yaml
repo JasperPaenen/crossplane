@@ -19,4 +19,4 @@ spec:
         patches:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.parameters.bucketname
-          toFieldPath: base.metadata.name
+          toFieldPath: metadata.name
