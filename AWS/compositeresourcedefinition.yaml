@@ -15,7 +15,7 @@ spec:
       openAPIV3Schema:
         type: object
         properties:
-          spec:
+          parameters:
             type: object
             properties:
               bucketname:
