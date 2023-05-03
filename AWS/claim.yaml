@@ -4,4 +4,3 @@ metadata:
   name: my-composite-resource
 spec: 
   region: "EU"
-  resourceName: backup-schedule-rule

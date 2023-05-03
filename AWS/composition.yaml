@@ -27,9 +27,5 @@ spec:
         spec:
           forProvider:
             name: poc-jasper-eks-velero-backups-demo
-            region: eu-west-1
-            rule:      
-      patches:
-        - fromFieldPath: spec.resourceName
-          toFieldPath: spec.forProvider.rule.ruleName
+            region: eu-west-1     
 
