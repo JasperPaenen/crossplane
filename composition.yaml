@@ -1,0 +1,58 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: s3-backup
+spec:
+  compositeTypeRef:
+    apiVersion: custom-api.example.org/v1alpha1
+    kind: XDatabase
+  resources:
+    - base:
+        apiVersion: s3.aws.upbound.io/v1beta1
+        kind: Bucket
+        metadata:
+          labels:
+            bucket: aws
+        spec:
+          forProvider:
+            region: "eu-west-1" 
+        patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.parameters.bucketname
+          toFieldPath: metadata.name
+    - base:
+        apiVersion: backup.aws.upbound.io/v1beta1
+        kind: Plan
+        metadata:
+          labels:
+            poc: backup
+            name: crossplane-backup-test
+        spec:
+          forProvider:
+            name: crossplane-backup
+            region: eu-west-1
+            rule:
+            - lifecycle:
+              - deleteAfter: 14
+              ruleName: up-examplebackuprule
+              schedule: cron(0 1 * * ? *)
+              targetVaultName: crossplane-vault
+    - base:
+        apiVersion: backup.aws.upbound.io/v1beta1
+        kind: Selection
+        metadata:
+          labels:
+            testing.upbound.io/example-name: vault
+          name: resource-assignment
+        spec:
+          forProvider:
+            name: S3
+            region: eu-west-1
+            iamRoleArn: arn:aws:iam::274382041406:role/service-role/AWSBackupDefaultServiceRole
+          planIdSelector:
+            matchLabels:
+              testing.upbound.io/example-name: vault
+          selectionTag:
+            - key: crossplane
+              type: STRINGEQUALS
+              value: bucket
